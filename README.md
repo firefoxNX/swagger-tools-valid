@@ -9,5 +9,5 @@ Try POST http://localhost:9005/users with payload
 Or CURL command
 
 ```
-curl -H "Host: localvia.intralinks.com:9005" -H "Content-Type: application/json" -H "Accept: */*" --data-binary '{"invalid":[]}' --compressed http://localhost:9005/users
+curl -H "Host: localhost:9005" -H "Content-Type: application/json" -H "Accept: */*" --data-binary '{"invalid":[]}' --compressed http://localhost:9005/users
 ```
