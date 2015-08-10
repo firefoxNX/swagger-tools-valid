@@ -1,0 +1,246 @@
+  swagger: "2.0"
+  info: 
+    version: "1.0.0"
+    title: "Users API"
+    license: 
+      name: "MIT"
+      url: ""
+  host: "localhost:9000"
+  basePath: "/"
+  schemes: 
+    - "http"
+  paths: 
+    /: 
+      get: 
+        summary: "Get All Users"
+        description: "Get All Users"
+        x-swagger-router-controller: "users"
+        operationId: "getAllUsers"
+        responses:
+          200:
+            description: Successful response
+            schema:
+              $ref: '#/definitions/Users'
+          400:
+            description: Bad Request
+            schema:
+              $ref: '#/definitions/Response'
+          401:
+            description: Unauthorized
+            schema:
+              $ref: '#/definitions/ServerError'
+          500:
+            description: Server Error
+            schema:
+              $ref: '#/definitions/ServerError'
+        tags: 
+          - "Users"
+      post: 
+        summary: "Add Users"
+        description: "Add Users"
+        x-swagger-router-controller: "users"
+        operationId: "createUser"
+        parameters: 
+          - 
+            name: "user"
+            in: "body"
+            description: "User to add"
+            required: true
+            schema: 
+              $ref: "#/definitions/User"
+        responses: 
+          201: 
+            description: "Created"
+            schema: 
+              $ref: "#/definitions/Response"
+          400: 
+            description: "Bad Request"
+            schema: 
+              $ref: "#/definitions/Response"
+          401: 
+            description: "Unauthorized"
+            schema: 
+              $ref: "#/definitions/ServerError"
+          500: 
+            description: "Server Error"
+            schema: 
+              $ref: "#/definitions/ServerError"
+        tags: 
+          - "Users"
+    /{id}:
+      put: 
+        summary: "Update User role within a Business Group"
+        description: "Update User role within a Business Group"
+        x-swagger-router-controller: "businessGroupUsers"
+        operationId: "update"
+        parameters: 
+          - 
+            name: "id"
+            type: "integer"
+            description: "ID of User"
+            in: "path"
+            required: true
+        responses: 
+          201: 
+            description: "Accepted"
+            schema: 
+              $ref: "#/definitions/Response"
+          400: 
+            description: "Bad Request"
+            schema: 
+              $ref: "#/definitions/Response"
+          401: 
+            description: "Unauthorized"
+            schema: 
+              $ref: "#/definitions/ServerError"
+          409: 
+            description: "Conflict"
+            schema: 
+              $ref: "#/definitions/ServerError"
+          500: 
+            description: "Server Error"
+            schema: 
+              $ref: "#/definitions/ServerError"
+        tags: 
+          - "Users"
+      delete: 
+        summary: "Delete User from Business Group"
+        description: "Delete User from Business Group"
+        x-swagger-router-controller: "businessGroupUsers"
+        operationId: "delete"
+        consumes: 
+          - "application/json"
+        parameters: 
+          - 
+            name: "id"
+            type: "integer"
+            description: "ID of User"
+            in: "path"
+            required: true
+        responses: 
+          202: 
+            description: "Accepted"
+            schema: 
+              $ref: "#/definitions/Response"
+          400: 
+            description: "Bad Request"
+            schema: 
+              $ref: "#/definitions/Response"
+          401: 
+            description: "Unauthorized"
+            schema: 
+              $ref: "#/definitions/ServerError"
+          500: 
+            description: "Server Error"
+            schema: 
+              $ref: "#/definitions/ServerError"
+        tags: 
+          - "Users"
+  definitions: 
+    User: 
+      description: "User"
+      required: 
+        - "name"
+        - "id"
+        - "email"
+        - "paid"
+      properties: 
+        id: 
+          type: "integer"
+        email: 
+          type: "string"
+          description: "User Email"
+        name: 
+          type: "string"
+          description: "User Name"
+        paid: 
+          type: "boolean"
+          description: "Is Paid User?"
+        age: 
+          type: "integer"
+          description: "User Age"
+        gender: 
+          type: "string"
+          description: "Gender"
+          enum: 
+            - "Male"
+            - "Female"
+    Users:
+      description: Collection of Users
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/definitions/User'
+    ServerError: 
+      description: "Server Error"
+      type: "object"
+      properties: 
+        status: 
+          type: "object"
+          description: "Status of the response"
+          properties: 
+            code: 
+              type: "integer"
+              description: "Status code of the response"
+            errorId: 
+              type: "string"
+              description: "Error ID of the error response"
+            message: 
+              type: "string"
+              description: "Description of the error"
+            subCode: 
+              type: "string"
+              description: "Subcode of the error status code"
+          required: 
+            - "code"
+            - "errorId"
+            - "message"
+        errors: 
+          type: "object"
+          description: "Error parent object"
+          properties: 
+            error: 
+              type: "object"
+              description: "Error object"
+              properties: 
+                code: 
+                  type: "integer"
+                  description: "Status code of the error"
+                message: 
+                  type: "string"
+                  description: "Description of the error"
+                statusParam: 
+                  type: "array"
+                  description: "Array of status parameters"
+                  items: 
+                    type: "object"
+                    properties: 
+                      name: 
+                        type: "string"
+                      value: 
+                        type: "string"
+                subCode: 
+                  type: "string"
+                  description: "Subcode of the error status code"
+    Response: 
+      description: "Response"
+      properties: 
+        status: 
+          type: "string"
+          description: "http response code"
+        error: 
+          $ref: "#/definitions/Error"
+    Error: 
+      description: "Error"
+      properties: 
+        code: 
+          type: "string"
+          description: "error code matches http error codes"
+        description: 
+          type: "string"
+          description: "error description"
+        sub-code: 
+          type: "string"
+          description: "application specific sub-code"
+
