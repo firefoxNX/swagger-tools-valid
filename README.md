@@ -9,5 +9,5 @@ Try POST http://localhost:9005/users with payload
 Or CURL command
 
 ```
-curl -H "Host: localhost:9005" -H "Content-Type: application/json" -H "Accept: */*" --data-binary '{"invalid":[]}' --compressed http://localhost:9005/users
+curl -H "Content-Type: application/json" -H "Accept: */*" -X POST -d '{"invalid":[]}' http://localhost:9005/users
 ```
