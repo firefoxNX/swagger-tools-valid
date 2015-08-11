@@ -15,16 +15,27 @@
   ],
   "paths": {
     "/users": {
-      "get": {
-        "summary": "Get All Users",
-        "description": "Get All Users",
+      "post": {
+        "summary": "Add Users",
+        "description": "Add Users",
         "x-swagger-router-controller": "users",
-        "operationId": "getAllUsers",
-        "responses": {
-          "200": {
-            "description": "Successful response",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "name": "users",
+            "in": "body",
+            "description": "Users to add",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/Users"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Response"
             }
           },
           "400": {
@@ -50,27 +61,16 @@
           "Users"
         ]
       },
-      "post": {
-        "summary": "Add Users",
-        "description": "Add Users",
+      "get": {
+        "summary": "Get All Users",
+        "description": "Get All Users",
         "x-swagger-router-controller": "users",
-        "operationId": "createUser",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User to add",
-            "required": true,
+        "operationId": "getAllUsers",
+        "responses": {
+          "200": {
+            "description": "Successful response",
             "schema": {
               "$ref": "#/definitions/Users"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/Response"
             }
           },
           "400": {
