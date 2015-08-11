@@ -1,0 +1,52 @@
+{
+    "description": "Users to add",
+    "in": "body",
+    "name": "users",
+    "required": true,
+    "schema": {
+        "description": "Collection of Users",
+        "properties": {
+            "users": {
+                "items": {
+                    "description": "User",
+                    "properties": {
+                        "age": {
+                            "description": "User Age",
+                            "type": "integer"
+                        },
+                        "email": {
+                            "description": "User Email",
+                            "type": "string"
+                        },
+                        "gender": {
+                            "description": "Gender",
+                            "enum": [
+                                "Male",
+                                "Female"
+                            ],
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "description": "User Name",
+                            "type": "string"
+                        },
+                        "paid": {
+                            "description": "Is Paid User?",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "id",
+                        "email",
+                        "paid"
+                    ]
+                },
+                "type": "array"
+            }
+        }
+    }
+}
