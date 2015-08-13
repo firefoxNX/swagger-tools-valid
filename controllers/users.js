@@ -37,7 +37,7 @@ Users.deleteUser = function (req, res, next) {
 
 /* Create user */
 Users.createUser = function (req, res, next) {
-    var inputJson = req.swagger.params.user.originalValue;
+    var inputJson = req.swagger.params.users.originalValue;
     console.log("Should not pass validation!!");
     console.log("inputJson = " + JSON.stringify(inputJson));
     res.send({

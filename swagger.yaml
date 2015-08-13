@@ -5,7 +5,7 @@ info:
   license:
     name: "MIT"
     url: ""
-host: "localhost:9005"
+host: "localhost:9000"
 basePath: "/"
 schemes:
   - "http"
@@ -98,7 +98,7 @@ paths:
           schema:
             $ref: "#/definitions/ServerError"
       tags:
-        - Users
+        - "Users"
     put:
       summary: "Update User "
       description: "Update User"
@@ -173,7 +173,6 @@ definitions:
     required:
       - "name"
       - "id"
-      - "email"
       - "paid"
     properties:
       id:
@@ -198,6 +197,9 @@ definitions:
           - "Female"
   Users:
     description: "Collection of Users"
+    additionalProperties: false
+    required:
+      - "users"
     properties:
       users:
         type: "array"
@@ -273,5 +275,5 @@ definitions:
         description: "error description"
       sub-code:
         type: "string"
-
         description: "application specific sub-code"
+

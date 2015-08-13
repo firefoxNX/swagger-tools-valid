@@ -1,1 +1,12 @@
-{"invalid":[]}
+{
+  "businessGroups": [
+    {
+      "name": "Vineet BG 277",
+      "orgId": 38691,
+      "contractId": 24281,
+      "suppressEULA": true,
+      "country": 198,
+      "appNames": ["VIA_ELITE"]
+    }
+  ]
+}

@@ -8,7 +8,7 @@
       "url": ""
     }
   },
-  "host": "localhost:9005",
+  "host": "localhost:9000",
   "basePath": "/",
   "schemes": [
     "http"
@@ -247,7 +247,6 @@
       "required": [
         "name",
         "id",
-        "email",
         "paid"
       ],
       "properties": {
@@ -282,6 +281,8 @@
     },
     "Users": {
       "description": "Collection of Users",
+      "additionalProperties": false,
+      "required": ["users"],
       "properties": {
         "users": {
           "type": "array",
