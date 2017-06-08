@@ -1,10 +1,10 @@
+// require('@glimpse/glimpse').init();
+
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var swaggerTools = require("swagger-tools");
 var swaggerDoc = require('./swagger.json');
-
-var routes = require('./routes');
 
 var app = express();
 
@@ -32,17 +32,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
     app.use(middleware.swaggerUi());
 });
 
-app.use('/', routes);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
 // error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
