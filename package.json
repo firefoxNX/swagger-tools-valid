@@ -3,14 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
     "debug": "~2.6.8",
     "express": "~4.15.2",
-    "swagger-tools": "^0.10.1"
+    "swagger-tools": "^0.10.1",
+    "snyk": "^1.189.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {},
+  "snyk": true
 }
